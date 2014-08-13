@@ -1,0 +1,9 @@
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\RightsLine.Common.dll
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\RightsLine.Common.pdb
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\obj\Debug\RightsLine.Common.dll
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\obj\Debug\RightsLine.Common.pdb
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\MongoDB.Bson.dll
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\MongoDB.Driver.dll
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\MongoDB.Bson.xml
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\bin\Debug\MongoDB.Driver.xml
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Common\obj\Debug\RightsLine.Common.csprojResolveAssemblyReference.cache
