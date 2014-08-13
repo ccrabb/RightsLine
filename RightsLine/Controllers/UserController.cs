@@ -18,8 +18,9 @@ namespace RightsLine.Controllers {
         }
 
         // GET api/values
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
+        public IEnumerable<User> Get() {
+            var users = _userFacade.GetUsers();
+            return users;
         }
 
         // GET api/values/5
@@ -30,7 +31,7 @@ namespace RightsLine.Controllers {
         // POST api/values
         public HttpResponseMessage Post([FromBody]User user) {
             if (ModelState.IsValid) {
-                var test = user;
+                _userFacade.CreateUser(user);
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             } else {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using RightsLine.Common.Mongo;
@@ -19,7 +20,11 @@ namespace RightsLine.Data.Facades {
             _usersCollection = _database.GetCollection<User>("Users");
         }
 
-        public User GetUser(Guid id) {
+        public IEnumerable<User> GetUsers() {
+            return _usersCollection.FindAllAs<User>();
+        }
+
+        public User GetUser(ObjectId id) {
             var query = Query<User>.EQ(x => x.ID, id);
             return _usersCollection.FindOneAs<User>(query);
         }
@@ -37,7 +42,7 @@ namespace RightsLine.Data.Facades {
             return user;
         }
 
-        public void DeleteUser(Guid id) {
+        public void DeleteUser(ObjectId id) {
             var query = Query<User>.EQ(x => x.ID, id);
             _usersCollection.Remove(query);
         }

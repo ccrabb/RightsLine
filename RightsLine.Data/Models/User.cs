@@ -4,15 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using RightsLine.Common;
 
 namespace RightsLine.Data.Models {
     [DataContract]
     public class User : IValidatableObject {
+        [BsonIgnore]
         public bool Validated { get; set; }
 
         [DataMember]
-        public Guid ID { get; set; }
+        [BsonId]
+        public ObjectId ID { get; set; }
 
         [DataMember]
         [Required]
