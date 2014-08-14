@@ -81,9 +81,10 @@
             }
 
             function addAlert(msg, timeout) {
-                var index = $scope.model.alerts.length;
-                $scope.model.alerts.push({ msg: msg });
+                var alert = { msg: msg };
+                $scope.model.alerts.push(alert);
                 $timeout(function () {
+                    var index = $scope.model.alerts.indexOf(alert);
                     $scope.model.alerts.splice(index, 1);
                 }, timeout, true);
             }
