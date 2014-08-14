@@ -28,6 +28,7 @@ namespace RightsLine.Data.Models {
 
         [DataMember]
         [Required]
+        [RegularExpression(@"^(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}$")]
         public string Phone { get; set; }
 
         [DataMember]
@@ -43,8 +44,14 @@ namespace RightsLine.Data.Models {
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
             this.Validated = true;
+            // I'm in the anti-complex-regex for email validation club, see: http://stackoverflow.com/questions/201323/using-a-regular-expression-to-validate-an-email-address
+            // This simple validation could and still should be done using a regex
             if (!this.Email.Contains("@") || !this.Email.Contains(".")) {
-                yield return new ValidationResult("Invalid Email", new List<string>() { "Email" });
+                yield return new ValidationResult("Invalid Email", new[] { "Email" });
+            }
+
+            if (this.Name == "John Doe") {
+                yield return new ValidationResult("I don't think so", new[] { "Name" });
             }
         }
     }

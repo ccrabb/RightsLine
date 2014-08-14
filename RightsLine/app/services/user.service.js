@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('rightsline').factory('UserService', ['$http', function ($http) {
-        var url = "/api/Users/";
+    angular.module('rightsline').factory('userService', ['$http', function ($http) {
+        var url = "/api/User/";
 
         function getUsers() {
             return $http({

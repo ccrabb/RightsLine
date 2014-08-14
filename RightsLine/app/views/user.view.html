@@ -1,0 +1,31 @@
+﻿<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <label for="name">Name: </label>
+            <input type="text" class="form-control" ng-model="model.currentUser.Name" id="name" placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email: </label>
+            <input type="email" class="form-control" ng-model="model.currentUser.Email" id="email" placeholder="jdoe@email.com" />
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone: </label>
+            <input type="tel" class="form-control" ng-model="model.currentUser.Phone" id="phone" placeholder="(760) 814-5053" />
+        </div>
+        <div class="form-group">
+            <label for="date">Date: </label>
+            <input type="text" class="form-control" ng-model="model.currentUser.BirthDate" id="date" bs-datepicker placeholder="08/18/1986">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender: </label>
+            <select class="form-control" ng-options="gender.Name for gender in model.Genders" ng-model="model.currentUser.Gender" id="gender"></select>
+        </div>
+        <div class="form-group">
+            <label for="active">Is Active:</label>
+            <input type="checkbox" ng-model="model.currentUser.IsActive" id="active" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="Save" />
+        </div>
+    </form>
+</div>

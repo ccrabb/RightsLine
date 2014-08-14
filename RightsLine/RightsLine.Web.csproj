@@ -174,14 +174,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\common\common.js" />
+    <Content Include="app\controllers\home.controller.js" />
     <Content Include="app\controllers\user.controller.js" />
     <Content Include="app\rightsline.js" />
     <Content Include="app\services\user.service.js" />
+    <Content Include="app\views\user.view.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontawesome\font-awesome.css" />
+    <Content Include="Content\fontawesome\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -325,6 +330,10 @@
     <Content Include="Scripts\angularstrap\modules\timepicker.min.js.map" />
     <Content Include="Scripts\angularstrap\modules\tooltip.min.js.map" />
     <Content Include="Scripts\angularstrap\modules\typeahead.min.js.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
