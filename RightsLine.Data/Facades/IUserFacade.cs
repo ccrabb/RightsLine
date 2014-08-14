@@ -11,7 +11,7 @@ namespace RightsLine.Data.Facades {
         IEnumerable<User> GetUsers();
         User GetUser(ObjectId id);
         User CreateUser(User user);
-        User UpdateUser(User user);
+        User UpdateUser(string id, User user);
         void DeleteUser(ObjectId id);
     }
 }

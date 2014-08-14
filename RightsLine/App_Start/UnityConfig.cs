@@ -11,8 +11,8 @@ namespace RightsLine {
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-            // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IUserFacade, UserFacade>(new TransientLifetimeManager());
+            //container.RegisterType<IUserFacade, UserFacadeMemory>(new TransientLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

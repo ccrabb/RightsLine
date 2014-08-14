@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Facades\IUserFacade.cs" />
     <Compile Include="Facades\UserFacade.cs" />
+    <Compile Include="Facades\UserFacadeMemory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,31 +1,43 @@
 ﻿<div class="container">
-    <form role="form">
-        <div class="form-group">
+    <form role="form" name="userForm" ng-submit="save()" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
             <label for="name">Name: </label>
-            <input type="text" class="form-control" ng-model="model.currentUser.Name" id="name" placeholder="John Doe" />
+            <input type="text" class="form-control" ng-model="model.currentUser.Name" name="name" id="name" placeholder="John Doe" required />
+            <p ng-show="!model.modelState.Name && userForm.name.$error.required && !userForm.name.$pristine" class="help-block">Name is required.</p>
+            <p ng-show="model.modelState.Name" class="help-block">{{model.modelState.Name}}</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
             <label for="email">Email: </label>
-            <input type="email" class="form-control" ng-model="model.currentUser.Email" id="email" placeholder="jdoe@email.com" />
+            <input type="text" class="form-control" ng-model="model.currentUser.Email" name="email" id="email" placeholder="jdoe@email.com" required ng-pattern="/^\S+@\S+$/" />
+            <p ng-show="!model.modelState.Email && userForm.email.$error.required && !userForm.email.$pristine" class="help-block">Email is required.</p>
+            <p ng-show="!model.modelState.Email && userForm.email.$error.pattern && !userForm.email.$pristine" class="help-block">Invalid email.</p>
+            <p ng-show="model.modelState.Email" class="help-block">{{model.modelState.Email}}</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
             <label for="phone">Phone: </label>
-            <input type="tel" class="form-control" ng-model="model.currentUser.Phone" id="phone" placeholder="(760) 814-5053" />
+            <input type="tel" class="form-control" ng-model="model.currentUser.Phone" id="phone" name="phone" placeholder="(760) 814-5053" required ng-pattern="/^(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}$/" />
+            <p ng-show="!model.modelState.Email && userForm.phone.$error.required && !userForm.phone.$pristine" class="help-block">Phone is required.</p>
+            <p ng-show="!model.modelState.Email && userForm.phone.$error.pattern && !userForm.phone.$pristine" class="help-block">Invalid phone number.</p>
+            <p ng-show="model.modelState.Phone" class="help-block">{{model.modelState.Phone}}</p>
         </div>
-        <div class="form-group">
-            <label for="date">Date: </label>
-            <input type="text" class="form-control" ng-model="model.currentUser.BirthDate" id="date" bs-datepicker placeholder="08/18/1986">
+        <div class="form-group" ng-class="{ 'has-error' : userForm.date.$invalid && !userForm.date.$pristine }">
+            <label for="date">Birthdate: </label>
+            <input type="text" class="form-control" date-format="MM/dd/yyyy" name="date" ng-model="model.currentUser.BirthDate" id="date" bs-datepicker placeholder="08/18/1986" required>
+            <p ng-show="!model.modelState.BirthDate && userForm.date.$error.required && !userForm.date.$pristine" class="help-block">Birthdate is required.</p>
+            <p ng-show="model.modelState.BirthDate" class="help-block">{{model.modelState.BirthDate}}</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : userForm.gender.$invalid && !userForm.gender.$pristine }">
             <label for="gender">Gender: </label>
-            <select class="form-control" ng-options="gender.Name for gender in model.Genders" ng-model="model.currentUser.Gender" id="gender"></select>
+            <select class="form-control" ng-options="gender.Id as gender.Name for gender in model.genders" name="gender" ng-model="model.currentUser.Gender" id="gender" required></select>
+            <p ng-show="!model.modelState.Gender && userForm.gender.$error.required && !userForm.gender.$pristine" class="help-block">Gender is required.</p>
+            <p ng-show="model.modelState.Gender" class="help-block">{{model.modelState.Gender}}</p>
         </div>
         <div class="form-group">
             <label for="active">Is Active:</label>
             <input type="checkbox" ng-model="model.currentUser.IsActive" id="active" />
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-info" value="Save" />
+            <input type="submit" class="btn btn-info" value="Save" ng-disabled="userForm.$invalid" />
         </div>
     </form>
 </div>

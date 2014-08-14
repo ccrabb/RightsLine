@@ -175,7 +175,6 @@
   <ItemGroup>
     <Content Include="app\common\common.js" />
     <Content Include="app\controllers\home.controller.js" />
-    <Content Include="app\controllers\user.controller.js" />
     <Content Include="app\rightsline.js" />
     <Content Include="app\services\user.service.js" />
     <Content Include="app\views\user.view.html" />

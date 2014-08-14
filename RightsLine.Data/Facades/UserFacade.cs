@@ -34,8 +34,9 @@ namespace RightsLine.Data.Facades {
             return user;
         }
 
-        public User UpdateUser(User user) {
-            var query = Query<User>.EQ(x => x.ID, user.ID);
+        public User UpdateUser(string id, User user) {
+            user.ID = new ObjectId(id);
+            var query = Query<User>.EQ(x => x.ID, new ObjectId(id));
             var updatedUser = Update<User>.Replace(user);
             _usersCollection.Update(query, updatedUser);
 

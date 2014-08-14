@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.UI.WebControls;
@@ -30,34 +32,34 @@ namespace RightsLine.Controllers {
         }
 
         // POST api/User
-        public HttpResponseMessage Post([FromBody]User user) {
+        public User Post([FromBody]User user) {
             if (ModelState.IsValid) {
                 _userFacade.CreateUser(user);
 
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return user;
             } else {
                 ValidateUser(user);
 
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState));
             }
         }
 
         // PUT api/User/{ObjectId}
-        public HttpResponseMessage Put(string id, [FromBody]User user) {
+        public User Put(string id, [FromBody]User user) {
             if (ModelState.IsValid) {
-                _userFacade.UpdateUser(user);
+                _userFacade.UpdateUser(id, user);
 
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return user;
             } else {
                 ValidateUser(user);
 
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState));
             }
         }
 
         // DELETE api/User/{ObjectId}
-        public void Delete(ObjectId id) {
-            _userFacade.DeleteUser(id);
+        public void Delete(string id) {
+            _userFacade.DeleteUser(new ObjectId(id));
         }
 
         /// <summary>

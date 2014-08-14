@@ -1,34 +1,69 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('rightsline').controller('HomeCtrl', ['$scope', '$state', 'rightslineConfig', 'userService',
+    angular.module('rightsline').controller('HomeCtrl', [
+        '$scope', '$state',
+        'rightslineConfig', 'userService',
         function ($scope, $state, rightslineConfig, userService) {
             $scope.model = {
                 users: [],
-                currentUser: undefined,
+                currentUser: {
+                    Name: undefined,
+                    Email: undefined,
+                    Phone: undefined,
+                    BirthDate: undefined,
+                    Gender: undefined,
+                    IsActive: undefined
+                },
                 showUserForm: false,
-                genders: rightslineConfig.genders
+                genders: rightslineConfig.genders,
+                modelState: {},
+                alerts: []
+            };
+
+            $scope.getGenderName = function (id) {
+                for (var i = 0; i < rightslineConfig.genders.length; i++) {
+                    if (rightslineConfig.genders[i].Id == id) {
+                        return rightslineConfig.genders[i].Name;
+                    }
+                }
             };
 
             $scope.deleteUser = function (user) {
                 $scope.model.currentUser = undefined;
-                userService.deleteUser(user.ID).success(function () {
-                    debugger;
-                });
+                userService.deleteUser(user.ID)
+                    .success(function () {
+                        var index = $scope.model.users.indexOf($scope.model.currentUser);
+                        $scope.model.users.splice(index, 1);
+                    })
+                    .error(function (err) {
+                        $scope.model.alerts.push({
+                            msg: 'Error deleting ' + scope.model.currentUser.Name
+                        });
+                    });
             };
 
             $scope.save = function () {
+                $scope.model.modelState = {};
                 var u = $scope.model.currentUser;
+                // If ID exists then this is a new user
                 if ($scope.model.currentUser.ID) {
                     userService.updateUser(u.ID, u.Name, u.Email, u.Phone, u.BirthDate, u.Gender, u.IsActive)
                         .success(function (res) {
-                            debugger;
+                            var index = $scope.model.users.indexOf(u);
+                            $scope.model.users.splice(index, 1, res);
+                        })
+                        .error(function (err) {
+                            validateModelState(err.ModelState);
+
                         });
                 } else {
                     userService.createUser(u.Name, u.Email, u.Phone, u.BirthDate, u.Gender, u.IsActive)
                         .success(function (user) {
                             $scope.model.users.push(user);
-                            debugger;
+                        })
+                        .error(function (err) {
+                            validateModelState(err.ModelState);
                         });
                 }
             };
@@ -37,6 +72,23 @@
                 userService.getUsers().success(function (data) {
                     $scope.model.users = data;
                 });
+            }
+
+            // Well... if client side validation gets bypassed this ends up being neat
+            function validateModelState(modelState) {
+                if ($scope.model.currentUser) {
+                    for (var prop in $scope.model.currentUser) {
+                        if (modelState['user.' + prop]) {
+                            if (modelState['user.' + prop][0].toLowerCase().indexOf('required') != -1) {
+                                $scope.model.modelState[prop] = prop.substr(prop.indexOf('.') + 1, prop.length) + ' is required.';
+                            } else if (modelState['user.' + prop][0].toLowerCase().indexOf('invalid') != -1) {
+                                $scope.model.modelState[prop] = prop.substr(prop.indexOf('.') + 1, prop.length) + ' is invalid.';
+                            } else {
+                                $scope.model.modelState[prop] = modelState['user.' + prop];
+                            }
+                        }
+                    }
+                }
             }
 
             initialize();

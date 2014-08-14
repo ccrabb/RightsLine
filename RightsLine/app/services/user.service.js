@@ -26,7 +26,7 @@
                     Name: name,
                     Email: email,
                     Phone: phone,
-                    BirthDate: birthDate,
+                    BirthDate: birthDate || '',
                     Gender: gender,
                     IsActive: isActive
                 }

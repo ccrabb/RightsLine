@@ -27,8 +27,7 @@ namespace RightsLine {
                                      "~/app/rightsline.js",
                                      "~/app/common/common.js",
                                      "~/app/services/user.service.js",
-                                     "~/app/controllers/home.controller.js",
-                                     "~/app/controllers/user.controller.js"
+                                     "~/app/controllers/home.controller.js"
                             ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
