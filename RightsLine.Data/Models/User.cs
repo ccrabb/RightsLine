@@ -45,7 +45,7 @@ namespace RightsLine.Data.Models {
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
             this.Validated = true;
             // I'm in the anti-complex-regex for email validation club, see: http://stackoverflow.com/questions/201323/using-a-regular-expression-to-validate-an-email-address
-            // This simple validation could and still should be done using a regex (like it is on the client)
+            // This simple validation could and still should be done using a regex (like it is on the client), I just love using yield return
             if (!this.Email.Contains("@") || !this.Email.Contains(".")) {
                 yield return new ValidationResult("Invalid Email", new[] { "Email" });
             }

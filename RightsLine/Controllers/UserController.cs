@@ -14,6 +14,7 @@ using RightsLine.Data.Facades;
 using RightsLine.Data.Models;
 
 namespace RightsLine.Controllers {
+    // TODO: Implement an ObjectId JsonConverter
     public class UserController : ApiController {
         private readonly IUserFacade _userFacade;
 
@@ -22,16 +23,30 @@ namespace RightsLine.Controllers {
         }
 
         // GET api/values
+        /// <summary>
+        /// Get all Users
+        /// </summary>
+        /// <returns>All Users</returns>
         public IEnumerable<User> Get() {
             return _userFacade.GetUsers();
         }
 
         // GET api/User/{ObjectId}
+        /// <summary>
+        /// Get a specific user
+        /// </summary>
+        /// <param name="id">Bson ObjectId</param>
+        /// <returns>User</returns>
         public User Get(string id) {
             return _userFacade.GetUser(new ObjectId(id));
         }
 
         // POST api/User
+        /// <summary>
+        /// Create a new User
+        /// </summary>
+        /// <param name="user">The created User with its ID set</param>
+        /// <returns></returns>
         public User Post([FromBody]User user) {
             if (ModelState.IsValid) {
                 _userFacade.CreateUser(user);
@@ -45,6 +60,12 @@ namespace RightsLine.Controllers {
         }
 
         // PUT api/User/{ObjectId}
+        /// <summary>
+        /// Update a User
+        /// </summary>
+        /// <param name="id">Bson ObjectId</param>
+        /// <param name="user">Updated User</param>
+        /// <returns></returns>
         public User Put(string id, [FromBody]User user) {
             if (ModelState.IsValid) {
                 _userFacade.UpdateUser(id, user);
@@ -58,6 +79,10 @@ namespace RightsLine.Controllers {
         }
 
         // DELETE api/User/{ObjectId}
+        /// <summary>
+        /// Delete a User
+        /// </summary>
+        /// <param name="id">Bson ObjectId</param>
         public void Delete(string id) {
             _userFacade.DeleteUser(new ObjectId(id));
         }

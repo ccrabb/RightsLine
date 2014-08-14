@@ -34,7 +34,6 @@ C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\obj\Debug\RightsLine.Tests.dll
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\obj\Debug\RightsLine.Tests.pdb
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\Microsoft.Practices.Unity.dll
-C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\Unity.Mvc5.dll
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\MongoDB.Driver.dll
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\MongoDB.Bson.dll
 C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\Microsoft.Practices.Unity.xml
@@ -82,3 +81,5 @@ C:\Users\ccrabb\Documents\GitHub\RightsLine\RightsLine.Tests\bin\Debug\MongoDB.B
 C:\Users\ccrabb\Documents\GitHub\RightsLine\RightsLine.Tests\obj\Debug\RightsLine.Tests.csprojResolveAssemblyReference.cache
 C:\Users\ccrabb\Documents\GitHub\RightsLine\RightsLine.Tests\obj\Debug\RightsLine.Tests.dll
 C:\Users\ccrabb\Documents\GitHub\RightsLine\RightsLine.Tests\obj\Debug\RightsLine.Tests.pdb
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\Unity.WebApi.dll
+C:\Users\Cory\Documents\Visual Studio 2013\Projects\RightsLine\RightsLine.Tests\bin\Debug\RightsLine.xml

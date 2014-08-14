@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace RightsLine.Data.Facades {
         private readonly MongoDatabase _database;
         private readonly MongoCollection _usersCollection;
         public UserFacade() {
-            _dataStore = new MongoDataStore("mongodb://localhost");
+            _dataStore = new MongoDataStore(ConfigurationManager.AppSettings["MongoConnectionString"]);
             _database = _dataStore.GetDatabase("RightsLine");
             _usersCollection = _database.GetCollection<User>("Users");
         }

@@ -47,7 +47,7 @@
             $scope.save = function (form) {
                 $scope.model.modelState = {};
                 var u = $scope.model.currentUser;
-                // If ID exists then this is a new user
+                // If ID already exists then this is an update
                 if ($scope.model.currentUser.ID) {
                     userService.updateUser(u.ID, u.Name, u.Email, u.Phone, u.BirthDate, u.Gender, u.IsActive)
                         .success(function (res) {
@@ -92,7 +92,9 @@
             // Well... if client side validation gets bypassed this ends up being neat
             function validateModelState(modelState) {
                 if ($scope.model.currentUser) {
+                    // Iterate through all of the User objects keys
                     for (var prop in $scope.model.currentUser) {
+                        // If the ModelState has that key, we have a server-side error for that property
                         if (modelState['user.' + prop]) {
                             if (modelState['user.' + prop][0].toLowerCase().indexOf('required') != -1) {
                                 $scope.model.modelState[prop] = prop.substr(prop.indexOf('.') + 1, prop.length) + ' is required.';
