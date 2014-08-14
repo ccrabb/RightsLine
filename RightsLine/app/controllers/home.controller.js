@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('rightsline').controller('HomeCtrl', [
-        '$scope', '$state',
+        '$scope', '$state', '$timeout',
         'rightslineConfig', 'userService',
-        function ($scope, $state, rightslineConfig, userService) {
+        function ($scope, $state, $timeout, rightslineConfig, userService) {
             $scope.model = {
                 users: [],
                 currentUser: {
@@ -33,6 +33,7 @@
                 $scope.model.currentUser = undefined;
                 userService.deleteUser(user.ID)
                     .success(function () {
+                        addAlert("Success! User Deleted", 5000);
                         var index = $scope.model.users.indexOf($scope.model.currentUser);
                         $scope.model.users.splice(index, 1);
                     })
@@ -43,13 +44,15 @@
                     });
             };
 
-            $scope.save = function () {
+            $scope.save = function (form) {
                 $scope.model.modelState = {};
                 var u = $scope.model.currentUser;
                 // If ID exists then this is a new user
                 if ($scope.model.currentUser.ID) {
                     userService.updateUser(u.ID, u.Name, u.Email, u.Phone, u.BirthDate, u.Gender, u.IsActive)
                         .success(function (res) {
+                            form.$setPristine();
+                            addAlert("Success! User Updated", 5000);
                             var index = $scope.model.users.indexOf(u);
                             $scope.model.users.splice(index, 1, res);
                         })
@@ -60,7 +63,10 @@
                 } else {
                     userService.createUser(u.Name, u.Email, u.Phone, u.BirthDate, u.Gender, u.IsActive)
                         .success(function (user) {
+                            form.$setPristine();
+                            $scope.model.currentUser.ID = user.ID;
                             $scope.model.users.push(user);
+                            addAlert("Success! User Created", 5000);
                         })
                         .error(function (err) {
                             validateModelState(err.ModelState);
@@ -72,6 +78,14 @@
                 userService.getUsers().success(function (data) {
                     $scope.model.users = data;
                 });
+            }
+
+            function addAlert(msg, timeout) {
+                var index = $scope.model.alerts.length;
+                $scope.model.alerts.push({ msg: msg });
+                $timeout(function () {
+                    $scope.model.alerts.splice(index, 1);
+                }, timeout, true);
             }
 
             // Well... if client side validation gets bypassed this ends up being neat
